@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+</head>
+<body>
+	<div sec:authorize="isAuthenticated()">
+		<h2>
+			Xin chào: <span sec:authentication="name"></span> <br> Role: <span
+				sec:authentication="principal.authorities"></span>
+		</h2>
+	</div>
+	<form method="post" th:action="@{/logout}">
+		<button>Logout</button>
+	</form>
+</body>
+</html>

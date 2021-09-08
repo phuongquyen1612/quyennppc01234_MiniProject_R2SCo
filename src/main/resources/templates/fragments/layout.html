@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	th:fragment="layout(lay, dynamic)">
+<head>
+<meta charset="UTF-8">
+<title th:replace="${lay}"></title>
+<th:block th:insert="~{/fragments/library :: headLib}"></th:block>
+</head>
+<body ng-app="app" ng-controller="cart-ctrl">
+<th:block th:insert="~{/fragments/header}"></th:block>
+<th:block th:replace="${dynamic}"></th:block>
+<th:block th:insert="~{/fragments/footer}"></th:block>
+
+<th:block th:insert="~{/fragments/library :: footLib}"></th:block>
+
+</body>
+</html>

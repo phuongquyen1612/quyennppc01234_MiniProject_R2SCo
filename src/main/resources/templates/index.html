@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org"
+	th:replace="~{/fragments/layout.html :: layout(~{::title}, ~{::body})}">
+<head>
+<title>Queen's Shoes Store</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+</head>
+
+<body ng-app="app" ng-controller="cart-ctrl">
+
+
+	<div class="colorlib-product">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+					<h2>Best Sellers</h2>
+				</div>
+			</div>
+			<div class="row row-pb-md">
+				<th:block th:each="item : ${product}">
+
+					<div class="col-lg-3 mb-4 text-center">
+						<div class="product-entry border">
+							<a href="#" class="prod-img"> <img
+								th:src="@{|/images/${item.image}|}" class="img-fluid"
+								alt="Free html5 bootstrap 4 template">
+
+							</a>
+							<div class="desc">
+								<h2>
+									<a href="#">[[${item.productname}]]</a>
+								</h2>
+								<span class="price">[[${item.price}]]</span>
+
+								<div sec:authorize="hasAuthority('ROLE_CUSTOMER')"  class="input-group mb-4">
+									<span class="input-group-btn">
+									<button type="button" class="quantity-left-minus btn" data-type="minus" ng-click="minus()"
+										data-field="">
+										<i class="icon-minus2"></i>
+									</button>
+								</span> <input type="text" id="qtycart" 
+									class="form-control input-number" value="{{quantity}}" min="1" max="100">
+								<span class="input-group-btn ml-1">
+									<button type="button" class="quantity-right-plus btn" data-type="plus"
+										ng-click="plus()" data-field="">
+										<i class="icon-plus2"></i>
+									</button>
+								</span>
+								</div>
+
+								<a sec:authorize="hasAuthority('ROLE_CUSTOMER')" 
+									class="btn btn-success btn-addtocart" th:attr="ng-click='cart.add(\''+${item.productid}+'\');'"><i
+									class="icon-shopping-cart"></i></a>
+							</div>
+						</div>
+					</div>
+				</th:block>
+			</div>
+
+
+		</div>
+	</div>
+
+	<div class="colorlib-partner">
+		<div class="container">
+			<div class="row">
+				<div
+					class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+					<h2>Trusted Partners</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col partner-col text-center">
+					<img th:src="@{/images/brand-2.jpg}" class="img-fluid"
+						alt="Free html4 bootstrap 4 template">
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+</html>
+
